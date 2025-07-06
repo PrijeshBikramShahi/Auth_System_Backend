@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
+console.log('MONGODB_URI:', process.env.MONGODB_URI);
+console.log('JWT_SECRET:', process.env.JWT_SECRET);
 
 const app = express();
 
@@ -74,7 +76,7 @@ userSchema.methods.comparePassword = async function(candidatePassword) {
 const User = mongoose.model('User', userSchema);
 
 // JWT Secret
-const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-this-in-production';
+const JWT_SECRET = process.env.JWT_SECRET || 'here-is-a-very-secure-jwt-secret-key';
 const JWT_EXPIRE = process.env.JWT_EXPIRE || '7d';
 
 // Generate JWT Token
